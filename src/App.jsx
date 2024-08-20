@@ -1,13 +1,10 @@
-import { useState } from 'react'
 import { Nav } from './components/Nav'
-import { CitySearchForm } from './components/CitySearchForm'
-import { CitySearchView } from './components/CitySearchView'
-import { Alert } from './components/Alert'
+import { useTranslation } from 'react-i18next'
 import { useToggle } from './hooks/useToggle'
+import { Outlet } from 'react-router-dom'
 
 function App() {
-  const [cityData, setCityData] = useState(null)
-  const [error, setError] = useState('')
+  const { t } = useTranslation()
   const [showSearchForm, toggleSearchForm] = useToggle(true)
 
   return (
@@ -16,11 +13,9 @@ function App() {
         <Nav toggleSearch={toggleSearchForm} />
       </header>
       <main className='sm:container text-white'>
-        {error && <Alert title="Error" content={error} type="danger" />}
-        {showSearchForm && <CitySearchForm setCityData={setCityData} setError={setError} toggleSearchForm={toggleSearchForm} />}
-        {cityData && <CitySearchView cityData={cityData} setErrorUp={setError} />}
+        <Outlet />
       </main>
-      <footer className='container text-weather-secondary text-xs mt-4'>The Burrow Weather 2024</footer>
+      <footer className='container text-weather-secondary text-xs mt-4'>{t('copyright')}</footer>
     </div>
   )
 }

@@ -1,23 +1,52 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faPlus, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { Button } from './Button'
 import { useToggle } from '../hooks/useToggle'
 import { InfoModal } from './InfoModal'
 import { createPortal } from 'react-dom'
 import { Settings } from './Settings'
+import { v4 as uuidv4 } from 'uuid';
+import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 export function Nav({ toggleSearch }) {
     const [showInfo, toggleInfo] = useToggle(false)
+    const { state, city } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+    let savedCities = []
+    const navigate = useNavigate()
+
+    const addCity = () => {
+        if (localStorage.getItem('savedCities')) {
+            savedCities = JSON.parse(localStorage.getItem('savedCities'))
+        }
+
+        const locationObj = {
+            id: uuidv4(),
+            state: state,
+            city: city,
+            coords: {
+                lat: searchParams.get('lat'),
+                lng: searchParams.get('lng')
+            }
+        }
+
+        savedCities.push(locationObj)
+        localStorage.setItem('savedCities', JSON.stringify(savedCities))
+
+        searchParams.delete('preview')
+
+        navigate(`/weather/${state}/${city}?id=${locationObj.id}&lat=${locationObj.coords.lat}&lng=${locationObj.coords.lng}`)
+    }
 
     return <nav className='container flex flex-col sm:flex-row items-center text-white'>
         <div className='flex flew-row items-center gap-3'>
             <FontAwesomeIcon icon={faSun} className='text-2xl' />
             <h1 className="text-2xl font-bold">
-                <a href="/">The Burrow Weather</a>
+                <NavLink to="/">The Burrow Weather</NavLink>
             </h1>
         </div>
-        <div className='flex flex-1 items-center justify-end gap-3'>
-            <Button variant="none" onClick={toggleSearch}><FontAwesomeIcon icon={faMagnifyingGlass} className='text-xl' /></Button>
+        <div className='flex flex-1 items-center justify-end'>
+            {searchParams.get('preview') && <Button variant="none" onClick={addCity}><FontAwesomeIcon icon={faPlus} className='text-xl' /></Button>}
             <Settings toggleInfo={toggleInfo} />
         </div>
 

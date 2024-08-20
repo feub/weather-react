@@ -1,12 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
-export function CityPreview({ cityData, weatherData }) {
+export function CityView({ preview, city, weatherData }) {
+    const { t } = useTranslation()
+
     return <>
+        {/* <!-- Preview banner --> */}
+        {preview && <div className="p-2 bg-weather-secondary">
+            {t('currently')}
+        </div>}
+
         {/* <!-- Weather overview --> */}
         <div className="max-w-screen-md w-full py-12 flex flex-col items-center justify-center" style={{
-            background: 'url("images/roma.jpg")'
+            background: 'url("/images/roma.jpg")'
         }}>
-            <h1 className="font-thin text-4xl mb-2">{getCityName(cityData.name)}</h1>
+            <h1 className="font-thin text-4xl mb-2">{city}</h1>
             <p className="text-sm mb-12 flex justify-center items-center al">
                 <span>
                     {
@@ -135,9 +142,9 @@ export function CityPreview({ cityData, weatherData }) {
                     </div>
                 </div>
             </div>}
-    </>
-}
 
-function getCityName(name) {
-    return name.split(',')[0].trim()
+        <p>
+            <button>Remove</button>
+        </p>
+    </>
 }

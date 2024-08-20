@@ -1,18 +1,19 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faMoon, faLanguage, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faGear, faMoon, faLanguage, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from "react-i18next"
 
 export function Settings({ toggleInfo }) {
+    const { t, i18n } = useTranslation()
 
     return (
         <div className="text-right">
             <Menu as="div" className="relative inline-block text-left">
                 <div>
-                    <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-                        Settings
-                        <FontAwesomeIcon icon={faChevronDown}
-                            className="-mr-1 ml-2 h-5 w-5 text-weather-primary hover:text-weather-primary"
+                    <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                        <FontAwesomeIcon icon={faGear}
+                            className="h-5 w-5 hover:text-white text-weather-secondary"
                             aria-hidden="true"
                         />
                     </Menu.Button>
@@ -31,7 +32,7 @@ export function Settings({ toggleInfo }) {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-gray-900'
+                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -45,14 +46,37 @@ export function Settings({ toggleInfo }) {
                                                 aria-hidden="true"
                                             />
                                         )}
-                                        Theme
+                                        {t('theme')}
+                                    </button>
+                                )}
+                            </Menu.Item>
+                        </div>
+                        <div className="px-1 py-1">
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <button key="en" onClick={() => i18n.changeLanguage('en')} type='submit'
+                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                    >
+                                        {active ? (
+                                            <FontAwesomeIcon icon={faLanguage}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        ) : (
+                                            <FontAwesomeIcon icon={faLanguage}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        )}
+                                        English
                                     </button>
                                 )}
                             </Menu.Item>
                             <Menu.Item>
                                 {({ active }) => (
-                                    <button
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-gray-900'
+                                    <button key="frn" onClick={() => i18n.changeLanguage('fr')} type='submit'
+                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -66,14 +90,37 @@ export function Settings({ toggleInfo }) {
                                                 aria-hidden="true"
                                             />
                                         )}
-                                        Language
+                                        Français
                                     </button>
                                 )}
                             </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <button key="it" onClick={() => i18n.changeLanguage('it')} type='submit'
+                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                    >
+                                        {active ? (
+                                            <FontAwesomeIcon icon={faLanguage}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        ) : (
+                                            <FontAwesomeIcon icon={faLanguage}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        )}
+                                        Italiano
+                                    </button>
+                                )}
+                            </Menu.Item>
+                        </div>
+                        <div className="px-1 py-1">
                             <Menu.Item>
                                 {({ active }) => (
                                     <button onClick={toggleInfo}
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-gray-900'
+                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (

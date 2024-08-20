@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
-import { Button } from "./Button";
+import { useEffect, useRef } from "react"
+import { Button } from "./Button"
+import { useTranslation } from "react-i18next"
 
 export function InfoModal({ onClose }) {
+    const { t } = useTranslation()
     const dialogRef = useRef(null)
 
     useEffect(() => {
@@ -33,6 +35,6 @@ export function InfoModal({ onClose }) {
         <p className="mb-3">
             If you no longer wish to track a city, simply select the city within the home page. At the bottom of the page, there will be am option to delete the city.
         </p>
-        <Button onClick={handleClose}>Close</Button>
+        <Button onClick={handleClose}>{t('close')}</Button>
     </dialog>
 }

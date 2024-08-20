@@ -1,0 +1,18 @@
+{
+  "copyright": "Météo The Burrow 2024",
+  "error": "Désolé, il y a eu un problème, merci de réessayer.",
+  "no-results": "Aucun résultat pour cette requête, essayez avec d'autres termes.",
+  "theme": "Thème",
+  "about": "A propos",
+  "close": "Fermer",
+  "loading": "Chargement ...",
+  "search-city": "Rechercher une ville",
+  "currently": "Vous êtes en train de prévisualiser une ville, cliquez sur le \"+\" pour commencer à suivre cette ville.",
+  "no-locations": "Aucune ville ajoutée. Pour commencer à suivre une ville, utilisez le champ de recherche ci-dessus.",
+  "hourly-title": "Les prochaines 24h",
+  "seven-days": "Les 7 prochains jours",
+  "next-hour": "La prochaine heure",
+  "remove-city": "Supprimer la ville",
+  "feels-like": "Ressenti",
+  "humidity": "Humidité"
+}

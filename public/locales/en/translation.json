@@ -1,0 +1,18 @@
+{
+  "copyright": "The Burrow Weather 2024",
+  "error": "Sorry, something went wrong, please try again.",
+  "no-results": "No results match your query, try a different term.",
+  "theme": "Theme",
+  "about": "About",
+  "close": "Close",
+  "loading": "Loading...",
+  "search-city": "Search for a city",
+  "currently": "You are currently previewing this city, click the \"+\" icon to start tracking this city.",
+  "no-locations": "No locations added. To start tracking a location, search in the field above.",
+  "hourly-title": "Hourly Weather",
+  "seven-days": "7 Day Forecast",
+  "next-hour": "Next hour",
+  "remove-city": "Remove city",
+  "feels-like": "Feels like",
+  "humidity": "Humidity"
+}

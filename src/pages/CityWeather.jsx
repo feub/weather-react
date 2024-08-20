@@ -1,13 +1,21 @@
-import { useFetch } from "../hooks/useFetch"
-import { Alert } from './Alert'
-import { CityPreview } from "./CityPreview"
+import { Alert } from '../components/Alert'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { useFetch } from '../hooks/useFetch'
+import { CityView } from "../components/CityView"
 
-export function CitySearchView({ cityData }) {
+export function CityWeather() {
+    const { state, city } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const lat = searchParams.get('lat')
+    const lng = searchParams.get('lng')
+    const preview = searchParams.get('preview')
+
     const OWMAppId = '2482ff4aa06ad0c1916714a4676f4e5f'
     const units = 'metric'
     const langapi = 'en'
 
-    const { loading, data: weatherData, error, setData } = useFetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${cityData.coords.lat}&lon=${cityData.coords.lng}&exclude={part}&appid=${OWMAppId}&units=${units}&lang=${langapi}`)
+    const { loading, data: weatherData, error, setData } = useFetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&exclude={part}&appid=${OWMAppId}&units=${units}&lang=${langapi}`)
 
     if (error) {
         return <Alert
@@ -34,6 +42,6 @@ export function CitySearchView({ cityData }) {
 
     return <>
         {loading && <p>Loading...</p>}
-        {weatherData && <CityPreview cityData={cityData} weatherData={weatherData} />}
+        {weatherData && <CityView preview={preview} city={city} weatherData={weatherData} />}
     </>
 }
