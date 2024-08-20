@@ -45,7 +45,6 @@ export function CitySearchForm({ setError }) {
         {loading && <p>{t('loading')}</p>}
         {searchResults && <ul className="bg-weather-secondary p-2">
             {searchResults.features !== 0 &&
-
                 searchResults.features.map(searchResult => (
                     <CitySearchItem key={searchResult.id} searchResult={searchResult} previewCity={previewCity} />
                 ))

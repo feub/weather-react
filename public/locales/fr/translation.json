@@ -14,5 +14,6 @@
   "next-hour": "La prochaine heure",
   "remove-city": "Supprimer la ville",
   "feels-like": "Ressenti",
-  "humidity": "Humidité"
+  "humidity": "Humidité",
+  "precipitation": "Précipitation"
 }

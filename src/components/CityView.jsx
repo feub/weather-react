@@ -1,7 +1,22 @@
 import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export function CityView({ preview, city, weatherData }) {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    console.log(i18n.language);
+
+    const removeCity = () => {
+        const savedCities = JSON.parse(localStorage.getItem('savedCities'))
+        const updatedCities = savedCities.filter(city => city.id !== searchParams.get('id'))
+        localStorage.setItem('savedCities', JSON.stringify(updatedCities))
+        navigate('/')
+    }
+
 
     return <>
         {/* <!-- Preview banner --> */}
@@ -18,7 +33,7 @@ export function CityView({ preview, city, weatherData }) {
                 <span>
                     {
                         new Date(weatherData.currentTime).toLocaleDateString(
-                            'en',
+                            i18n.language,
                             {
                                 weekday: "short",
                                 day: "2-digit",
@@ -30,7 +45,7 @@ export function CityView({ preview, city, weatherData }) {
                 <span>
                     {
                         new Date(weatherData.currentTime).toLocaleTimeString(
-                            'en',
+                            i18n.language,
                             {
                                 timeStyle: "short",
                             }
@@ -42,7 +57,7 @@ export function CityView({ preview, city, weatherData }) {
                 {Math.round(weatherData.current.temp)}&deg;
             </p>
             <p>
-                Feels like {Math.round(weatherData.current.feels_like)}&deg;
+                {t('feels-like')} {Math.round(weatherData.current.feels_like)}&deg;
             </p>
             <p className="capitalize">
                 {weatherData.current.weather[0].description}
@@ -56,7 +71,7 @@ export function CityView({ preview, city, weatherData }) {
         {/* <!-- Hourly weather --> */}
         <div className="max-w-screen-md w-full py-12">
             <div className="text-white">
-                <h2 className="mb-4">Hourly weather</h2>
+                <h2 className="mb-4">{t('hourly-title')}</h2>
                 <div className="flex gap-10 overflow-x-scroll">
                     {
                         weatherData.hourly.map(hourly => (
@@ -66,7 +81,7 @@ export function CityView({ preview, city, weatherData }) {
                                         new Date(
                                             hourly.currentTime
                                         ).toLocaleTimeString(
-                                            'en', {
+                                            i18n.language, {
                                             hour: "numeric"
                                         })
                                     }
@@ -77,10 +92,10 @@ export function CityView({ preview, city, weatherData }) {
                                     {Math.round(hourly.temp)}&deg;
                                 </p>
                                 <p className="whitespace-nowrap text-sm">
-                                    Feels like {Math.round(hourly.feels_like)}&deg;
+                                    {t('feels-like')} {Math.round(hourly.feels_like)}&deg;
                                 </p>
                                 <p className="whitespace-nowrap text-sm">
-                                    Humidity {hourly.humidity}%
+                                    {t('humidity')} {hourly.humidity}%
                                 </p>
                             </div>
                         ))
@@ -94,13 +109,13 @@ export function CityView({ preview, city, weatherData }) {
         {/* <!-- Weekly weather --> */}
         <div className="max-w-screen-md w-full py-12">
             <div className="text-white">
-                <h2 className="mb-4">Seven days weather</h2>
+                <h2 className="mb-4">{t('seven-days')}</h2>
                 {
                     weatherData.daily.map(day => (
                         <div key={day.dt} className="flex items-center">
                             <p className="flex-1">
                                 {
-                                    new Date(day.dt * 1000).toLocaleDateString('en',
+                                    new Date(day.dt * 1000).toLocaleDateString(i18n.language,
                                         {
                                             weekday: "long"
                                         }
@@ -125,7 +140,7 @@ export function CityView({ preview, city, weatherData }) {
         {weatherData.minutely &&
             <div className="max-w-screen-md w-full py-12">
                 <div className="text-white">
-                    <h2 className="mb-4">Precipitation (mm/h)</h2>
+                    <h2 className="mb-4">{t('precipitation')} (mm/h)</h2>
                     <div className="flex justify-center gap-7 overflow-x-auto">
                         {
                             weatherData.minutely.map((preciData, index) => (
@@ -143,8 +158,13 @@ export function CityView({ preview, city, weatherData }) {
                 </div>
             </div>}
 
-        <p>
-            <button>Remove</button>
+        <p className='flex flex-row justify-center hover:text-red-500 text-white/50 text-xs'>
+            <button onClick={removeCity}>
+                <FontAwesomeIcon icon={faTrash}
+                    className="mr-2"
+                />
+                <span>{t('remove-city')}</span>
+            </button>
         </p>
     </>
 }
