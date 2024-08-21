@@ -15,5 +15,7 @@
   "remove-city": "Remove city",
   "feels-like": "Feels like",
   "humidity": "Humidity",
-  "precipitation": "Precipitation"
+  "precipitation": "Precipitation",
+  "sorry-error": "Sorry, an unexpected error has occurred.",
+  "back-home": "Back to the home page"
 }

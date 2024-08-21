@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import Skeleton from "react-loading-skeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export function CityListCard({ city }) {
     const navigate = useNavigate()
@@ -16,11 +18,11 @@ export function CityListCard({ city }) {
             </div>
             <div className="flex flex-col gap-2">
                 <p className="text-3xl self-end">
-                    {Math.round(city.weather.current.temp)}&deg;
+                    {Math.round(city.weather?.current.temp)}&deg;
                 </p>
                 <div className="flex gap-2">
                     <img className="w-[50px] h-auto"
-                        src={`http://openweathermap.org/img/wn/${city.weather.current.weather[0].icon}@2x.png`} alt="" />
+                        src={`http://openweathermap.org/img/wn/${city.weather?.current.weather[0].icon}@2x.png`} alt="" />
                 </div>
             </div>
         </div>

@@ -15,5 +15,7 @@
   "remove-city": "Supprimer la ville",
   "feels-like": "Ressenti",
   "humidity": "Humidité",
-  "precipitation": "Précipitation"
+  "precipitation": "Précipitation",
+  "sorry-error": "Désolé, une erreur est survenue.",
+  "back-home": "Retour à la page d'accueil"
 }
