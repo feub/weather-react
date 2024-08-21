@@ -1,10 +1,10 @@
-import { CityListCard } from "./CityListCard";
+import { useEffect, useState } from "react"
+import { CityListCard } from "./CityListCard"
+import { CityListCardSkel } from "./CityListCardSkel"
 
-let savedCities
-
-async function getCities() {
+const getCities = async () => {
     if (localStorage.getItem('savedCities')) {
-        savedCities = JSON.parse(localStorage.getItem('savedCities'))
+        const savedCities = JSON.parse(localStorage.getItem('savedCities') || '[]')
         const OWMAppId = '2482ff4aa06ad0c1916714a4676f4e5f'
         const units = 'metric'
         const langapi = 'en'
@@ -19,19 +19,30 @@ async function getCities() {
             savedCities[index].weather = data
         })
 
-        // Flickr Delay
-        await new Promise((res) => setTimeout(res, 500));
+        // Flickr delay
+        await new Promise((res) => setTimeout(res, 400));
+
+        return savedCities
     }
 }
 
-await getCities()
-
 export function CityList() {
+    const [cities, setCities] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getCities().then((data) => {
+            setCities(data)
+            setLoading(false)
+        })
+    }, [])
+
     return <div className="flex flex-col gap-4">
-        {savedCities &&
-            savedCities.map(city => (
-                <CityListCard key={city.id} city={city} />
-            ))
+        {loading && <CityListCardSkel cards={2} />
+
+        }
+        {cities &&
+            cities.map(city => <CityListCard key={city.id} city={city} />)
         }
     </div>
 }
