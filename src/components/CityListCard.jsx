@@ -14,7 +14,7 @@ export function CityListCard({ city }) {
             className="flex py-3 px-3 bg-weather-secondary rounded-md shadow-md cursor-pointer dark:bg-weather-secondary-dark">
             <div className="flex flex-col flex-1">
                 <h2 className="text-3xl">{city.city}</h2>
-                <h3 className="text-white/50">{city.state}</h3>
+                <h3 className="text-slate-700/50 dark:text-slate-200/50">{city.state}</h3>
             </div>
             <div className="flex flex-col gap-2">
                 <p className="text-3xl self-end">
@@ -22,7 +22,7 @@ export function CityListCard({ city }) {
                 </p>
                 <div className="flex gap-2">
                     <img className="w-[50px] h-auto"
-                        src={`http://openweathermap.org/img/wn/${city.weather?.current.weather[0].icon}@2x.png`} alt="" />
+                        src={`http://openweathermap.org/img/wn/${city.weather?.current.weather[0].icon}@2x.png`} alt={city.city} />
                 </div>
             </div>
         </div>

@@ -9,11 +9,11 @@ export function Home() {
     const [error, setError] = useState('')
     const [showSearchForm, toggleSearchForm] = useToggle(true)
 
-    return <>
+    return <div className="fade-in">
         {error && <Alert title="Error" content={error} type="danger" />}
         {showSearchForm && <CitySearchForm setError={setError} />}
         <div>
             <CityList />
         </div>
-    </>
+    </div>
 }

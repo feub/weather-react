@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class",
+  darkMode: "selector",
   theme: {
     extend: {
       colors: {
-        "weather-primary": "#00668A",
-        "weather-secondary": "#004E71",
+        "weather-primary": "#DEF2FE",
+        "weather-secondary": "#add9f7",
         "weather-primary-dark": "#282A37",
         "weather-secondary-dark": "#181A21",
       },

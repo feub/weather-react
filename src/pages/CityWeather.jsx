@@ -42,8 +42,8 @@ export function CityWeather() {
         });
     }
 
-    return <>
+    return <div className="fade-in">
         {loading && <CityViewSkel />}
         {weatherData && <CityView preview={preview} city={city} weatherData={weatherData} />}
-    </>
+    </div>
 }

@@ -4,16 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear, faMoon, faLanguage, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from "react-i18next"
 
-export function Settings({ toggleInfo }) {
+export function Settings({ toggleInfo, toggleMode }) {
     const { t, i18n } = useTranslation()
 
     return (
         <div className="text-right">
             <Menu as="div" className="relative inline-block text-left">
                 <div>
-                    <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                    <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-700/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                         <FontAwesomeIcon icon={faGear}
-                            className="h-5 w-5 hover:text-white text-weather-secondary"
+                            className="h-5 w-5 text-slate-700/50 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200"
                             aria-hidden="true"
                         />
                     </Menu.Button>
@@ -27,12 +27,12 @@ export function Settings({ toggleInfo }) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                    <Menu.Items className="absolute z-50 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <button
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                    <button onClick={toggleMode}
+                                        className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -55,7 +55,7 @@ export function Settings({ toggleInfo }) {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button key="en" onClick={() => i18n.changeLanguage('en')} type='submit'
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                        className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -76,7 +76,7 @@ export function Settings({ toggleInfo }) {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button key="frn" onClick={() => i18n.changeLanguage('fr')} type='submit'
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                        className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -97,7 +97,7 @@ export function Settings({ toggleInfo }) {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button key="it" onClick={() => i18n.changeLanguage('it')} type='submit'
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                        className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
@@ -120,7 +120,7 @@ export function Settings({ toggleInfo }) {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button onClick={toggleInfo}
-                                        className={`${active ? 'bg-weather-primary text-white' : 'text-weather-primary'
+                                        className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
