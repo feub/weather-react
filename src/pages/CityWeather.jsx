@@ -3,7 +3,6 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch'
 import { CityView } from "../components/CityView"
 import { CityViewSkel } from '../components/CityViewSkel'
-import { motion } from 'framer-motion'
 
 export function CityWeather() {
     const { state, city } = useParams()
