@@ -1,10 +1,10 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGear, faMoon, faLanguage, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faGear, faMoon, faSun, faLanguage, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from "react-i18next"
 
-export function Settings({ toggleInfo, toggleMode }) {
+export function Settings({ toggleInfo, theme, toggleMode }) {
     const { t, i18n } = useTranslation()
 
     return (
@@ -35,8 +35,8 @@ export function Settings({ toggleInfo, toggleMode }) {
                                         className={`text-slate-700 ${active ? 'bg-weather-primary' : ''
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
-                                        {active ? (
-                                            <FontAwesomeIcon icon={faMoon}
+                                        {active ? (theme === 'dark' ? (
+                                            <FontAwesomeIcon icon={faSun}
                                                 className="mr-2 h-5 w-5"
                                                 aria-hidden="true"
                                             />
@@ -45,7 +45,17 @@ export function Settings({ toggleInfo, toggleMode }) {
                                                 className="mr-2 h-5 w-5"
                                                 aria-hidden="true"
                                             />
-                                        )}
+                                        )) : (theme === 'dark' ? (
+                                            <FontAwesomeIcon icon={faSun}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        ) : (
+                                            <FontAwesomeIcon icon={faMoon}
+                                                className="mr-2 h-5 w-5"
+                                                aria-hidden="true"
+                                            />
+                                        ))}
                                         {t('theme')}
                                     </button>
                                 )}

@@ -12,8 +12,6 @@ export function Home() {
     return <div className="fade-in">
         {error && <Alert title="Error" content={error} type="danger" />}
         {showSearchForm && <CitySearchForm setError={setError} />}
-        <div>
-            <CityList />
-        </div>
+        <CityList />
     </div>
 }

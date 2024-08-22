@@ -9,6 +9,7 @@
   "search-city": "Search for a city",
   "currently": "You are currently previewing this city, click the \"+\" icon to start tracking this city.",
   "no-locations": "No locations added. To start tracking a location, search in the field above.",
+  "no-city-saved": "No saved cities yet... 😞",
   "hourly-title": "Hourly Weather",
   "seven-days": "7 Day Forecast",
   "next-hour": "Next hour",

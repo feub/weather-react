@@ -40,7 +40,7 @@ export function CitySearchForm({ setError }) {
         navigate(`/weather/${state.trim()}/${city.trim()}?lat=${location.geometry.coordinates[1]}&lng=${location.geometry.coordinates[0]}&preview=true`)
     }
 
-    return <div className='pt-4 mb-8'>
+    return <div className='pt-4 mb-4'>
         <input value={search} onChange={handleSearch} type="text" placeholder={t('search-city')} className='py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#add9f7] dark:focus:shadow-[0px_1px_0_0_#181A21]' />
         {loading && <p>{t('loading')}</p>}
         {searchResults && <ul className="bg-weather-secondary dark:bg-weather-secondary-dark p-2">

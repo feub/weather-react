@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { CityListCard } from "./CityListCard"
 import { CityListCardSkel } from "./CityListCardSkel"
+import { useTranslation } from "react-i18next"
 
 const getCities = async () => {
     if (localStorage.getItem('savedCities')) {
@@ -29,6 +30,7 @@ const getCities = async () => {
 export function CityList() {
     const [cities, setCities] = useState([])
     const [loading, setLoading] = useState(true)
+    const { t } = useTranslation()
 
     useEffect(() => {
         getCities().then((data) => {
@@ -38,9 +40,8 @@ export function CityList() {
     }, [])
 
     return <div className="flex flex-col gap-4">
-        {loading && <CityListCardSkel cards={2} />
-
-        }
+        {loading && <CityListCardSkel cards={2} />}
+        {cities.length === 0 && <p className="text-sm">{t('no-city-saved')}</p>}
         {cities &&
             cities.map(city => <CityListCard key={city.id} city={city} />)
         }

@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 
-export function Nav({ toggleSearch, toggleMode }) {
+export function Nav({ toggleSearch, theme, toggleMode }) {
     const [showInfo, toggleInfo] = useToggle(false)
     const { state, city } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -47,8 +47,8 @@ export function Nav({ toggleSearch, toggleMode }) {
             </h1>
         </div>
         <div className='flex flex-1 items-center justify-end'>
-            {searchParams.get('preview') && <Button variant="none" onClick={addCity}><FontAwesomeIcon icon={faPlus} className='text-xl' /></Button>}
-            <Settings toggleInfo={toggleInfo} toggleMode={toggleMode} />
+            {searchParams.get('preview') && <Button variant="none" onClick={addCity}><FontAwesomeIcon icon={faPlus} className='text-xl text-slate-700/50 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200' /></Button>}
+            <Settings toggleInfo={toggleInfo} theme={theme} toggleMode={toggleMode} />
         </div>
 
         {showInfo && createPortal(<InfoModal onClose={toggleInfo} />, document.querySelector('main'))}

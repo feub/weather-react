@@ -29,7 +29,9 @@ function App() {
       <main className='sm:container text-slate-700 dark:text-slate-200'>
         <Outlet />
       </main>
-      <footer className='container text-slate-700/50 dark:text-slate-200/30 text-xs my-4'>{t('copyright')}</footer>
+      <footer className='container text-slate-700/50 dark:text-slate-200/30 text-xs'>
+        <div className='p-2 my-4'>{t('copyright')}</div>
+      </footer>
     </div>
   )
 }

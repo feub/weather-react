@@ -9,6 +9,7 @@
   "search-city": "Rechercher une ville",
   "currently": "Vous êtes en train de prévisualiser une ville, cliquez sur le \"+\" pour commencer à suivre cette ville.",
   "no-locations": "Aucune ville ajoutée. Pour commencer à suivre une ville, utilisez le champ de recherche ci-dessus.",
+  "no-city-saved": "Aucune ville n'est enregistrée pour le moment... 😞",
   "hourly-title": "Les prochaines 24h",
   "seven-days": "Les 7 prochains jours",
   "next-hour": "La prochaine heure",
