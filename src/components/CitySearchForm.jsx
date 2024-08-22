@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { CitySearchItem } from "./CitySearchItem"
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -10,10 +10,12 @@ export function CitySearchForm({ setError }) {
     const [loading, setLoading] = useState(false)
     const [searchResults, setSearchResults] = useState(null)
     const navigate = useNavigate()
+    const queryTimeout = useRef(null)
 
     const handleSearch = (e) => {
         setSearch(e.target.value)
-        setTimeout(() => {
+        clearTimeout(queryTimeout.current)
+        queryTimeout.current = setTimeout(() => {
             if (e.target.value !== '') {
                 setLoading(true)
                 setSearch(e.target.value)

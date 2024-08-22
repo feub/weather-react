@@ -40,7 +40,7 @@ export function CityList() {
     }, [])
 
     return <div className="flex flex-col gap-4">
-        {loading && <CityListCardSkel cards={2} />}
+        {loading && <CityListCardSkel cards={1} />}
         {cities.length === 0 && <p className="text-sm">{t('no-city-saved')}</p>}
         {cities &&
             cities.map(city => <CityListCard key={city.id} city={city} />)
