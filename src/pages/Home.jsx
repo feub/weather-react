@@ -3,7 +3,6 @@ import { CitySearchForm } from '../components/CitySearchForm'
 import { Alert } from '../components/Alert'
 import { useToggle } from '../hooks/useToggle'
 import { CityList } from '../components/CityList'
-import { motion } from 'framer-motion'
 
 export function Home() {
     const [error, setError] = useState('')
