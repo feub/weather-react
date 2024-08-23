@@ -1,24 +1,23 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun, faMoon, faPlus, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { Button } from './Button'
-import { useToggle } from '../hooks/useToggle'
-import { InfoModal } from './InfoModal'
-import { createPortal } from 'react-dom'
-import { Settings } from './Settings'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Button } from './Button';
+import { useToggle } from '../hooks/useToggle';
+import { InfoModal } from './InfoModal';
+import { createPortal } from 'react-dom';
+import { Settings } from './Settings';
 import { v4 as uuidv4 } from 'uuid';
-import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { useState } from 'react'
+import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-export function Nav({ toggleSearch, theme, toggleMode }) {
-    const [showInfo, toggleInfo] = useToggle(false)
-    const { state, city } = useParams()
-    const [searchParams, setSearchParams] = useSearchParams()
-    let savedCities = []
-    const navigate = useNavigate()
+export function Nav({ theme, toggleMode }) {
+    const [showInfo, toggleInfo] = useToggle(false);
+    const { state, city } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    let savedCities = [];
+    const navigate = useNavigate();
 
     const addCity = () => {
         if (localStorage.getItem('savedCities')) {
-            savedCities = JSON.parse(localStorage.getItem('savedCities'))
+            savedCities = JSON.parse(localStorage.getItem('savedCities'));
         }
 
         const locationObj = {
@@ -29,15 +28,15 @@ export function Nav({ toggleSearch, theme, toggleMode }) {
                 lat: searchParams.get('lat'),
                 lng: searchParams.get('lng')
             }
-        }
+        };
 
-        savedCities.push(locationObj)
-        localStorage.setItem('savedCities', JSON.stringify(savedCities))
+        savedCities.push(locationObj);
+        localStorage.setItem('savedCities', JSON.stringify(savedCities));
 
-        searchParams.delete('preview')
+        searchParams.delete('preview');
 
-        navigate(`/weather/${state}/${city}?id=${locationObj.id}&lat=${locationObj.coords.lat}&lng=${locationObj.coords.lng}`)
-    }
+        navigate(`/weather/${state}/${city}?id=${locationObj.id}&lat=${locationObj.coords.lat}&lng=${locationObj.coords.lng}`);
+    };
 
     return <nav className="container flex flex-col sm:flex-row items-center text-slate-700 dark:text-slate-200">
         <div className='flex flew-row items-center gap-3'>
@@ -52,5 +51,5 @@ export function Nav({ toggleSearch, theme, toggleMode }) {
         </div>
 
         {showInfo && createPortal(<InfoModal onClose={toggleInfo} />, document.querySelector('main'))}
-    </nav>
+    </nav>;
 }

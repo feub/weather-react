@@ -1,21 +1,19 @@
-import { useTranslation } from 'react-i18next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-export function CityView({ preview, city, weatherData }) {
-    const { t, i18n } = useTranslation()
-    const navigate = useNavigate()
-    const [searchParams, setSearchParams] = useSearchParams()
+export function CityView({ theme, preview, city, weatherData }) {
+    const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const removeCity = () => {
-        const savedCities = JSON.parse(localStorage.getItem('savedCities'))
-        const updatedCities = savedCities.filter(city => city.id !== searchParams.get('id'))
-        localStorage.setItem('savedCities', JSON.stringify(updatedCities))
-        navigate('/')
-    }
-
-    const currentLang = i18n.language || 'en'
+        const savedCities = JSON.parse(localStorage.getItem('savedCities'));
+        const updatedCities = savedCities.filter(city => city.id !== searchParams.get('id'));
+        localStorage.setItem('savedCities', JSON.stringify(updatedCities));
+        navigate('/');
+    };
 
     return <>
         {/* <!-- Preview banner --> */}
@@ -32,7 +30,7 @@ export function CityView({ preview, city, weatherData }) {
                 <span>
                     {
                         new Date(weatherData.currentTime).toLocaleDateString(
-                            currentLang,
+                            i18n.language,
                             {
                                 weekday: "short",
                                 day: "2-digit",
@@ -44,7 +42,7 @@ export function CityView({ preview, city, weatherData }) {
                 <span>
                     {
                         new Date(weatherData.currentTime).toLocaleTimeString(
-                            currentLang,
+                            i18n.language,
                             {
                                 timeStyle: "short",
                             }
@@ -79,7 +77,7 @@ export function CityView({ preview, city, weatherData }) {
                                     new Date(
                                         hourly.currentTime
                                     ).toLocaleTimeString(
-                                        currentLang, {
+                                        i18n.language, {
                                         hour: "numeric"
                                     })
                                 }
@@ -111,7 +109,7 @@ export function CityView({ preview, city, weatherData }) {
                     <div key={day.dt} className="flex items-center">
                         <p className="flex-1">
                             {
-                                new Date(day.dt * 1000).toLocaleDateString(currentLang,
+                                new Date(day.dt * 1000).toLocaleDateString(i18n.language,
                                     {
                                         weekday: "long"
                                     }
@@ -164,5 +162,5 @@ export function CityView({ preview, city, weatherData }) {
                     </button>
                 </p>
             </div>}
-    </>
+    </>;
 }
