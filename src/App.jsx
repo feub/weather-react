@@ -26,7 +26,7 @@ function App() {
       <header className='shadow-lg py-3'>
         <Nav theme={theme} toggleMode={toggleMode} />
       </header>
-      <main className='sm:container text-slate-700 dark:text-slate-200'>
+      <main className='container text-slate-700 dark:text-slate-200'>
         <Outlet context={[theme, setTheme]} />
       </main>
       <footer className='container text-slate-700/50 dark:text-slate-200/30 text-xs'>

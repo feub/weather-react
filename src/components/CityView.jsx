@@ -67,7 +67,7 @@ export function CityView({ theme, preview, city, weatherData }) {
 
         {/* <!-- Hourly weather --> */}
         <div className="max-w-screen-md w-full py-12">
-            <h2 className="mb-4 font-bold">{t('hourly-title')}</h2>
+            <h2 className="mb-4 text-xl font-thin">{t('hourly-title')}</h2>
             <div className="flex gap-10 overflow-x-scroll">
                 {
                     weatherData.hourly.map(hourly => (
@@ -103,7 +103,7 @@ export function CityView({ theme, preview, city, weatherData }) {
 
         {/* <!-- Weekly weather --> */}
         <div className="max-w-screen-md w-full py-12">
-            <h2 className="font-bold mb-4">{t('seven-days')}</h2>
+            <h2 className="text-xl font-thin mb-4">{t('seven-days')}</h2>
             {
                 weatherData.daily.map(day => (
                     <div key={day.dt} className="flex items-center">
@@ -132,7 +132,7 @@ export function CityView({ theme, preview, city, weatherData }) {
         {/* <!-- Precipitation --> */}
         {weatherData.minutely &&
             <div className="max-w-screen-md w-full py-12">
-                <h2 className="mb-4 font-bold">{t('precipitation')} (mm/h)</h2>
+                <h2 className="mb-4 text-xl font-thin">{t('precipitation')} (mm/h)</h2>
                 <div className="flex justify-center gap-7 overflow-x-auto">
                     {
                         weatherData.minutely.map((preciData, index) => (

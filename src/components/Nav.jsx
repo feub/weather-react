@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button } from './Button';
 import { useToggle } from '../hooks/useToggle';
 import { InfoModal } from './InfoModal';
@@ -38,10 +38,9 @@ export function Nav({ theme, toggleMode }) {
         navigate(`/weather/${state}/${city}?id=${locationObj.id}&lat=${locationObj.coords.lat}&lng=${locationObj.coords.lng}`);
     };
 
-    return <nav className="container flex flex-col sm:flex-row items-center text-slate-700 dark:text-slate-200">
+    return <nav className="container flex flex-row items-center text-slate-700 dark:text-slate-200">
         <div className='flex flew-row items-center gap-3'>
-            <FontAwesomeIcon icon={faSun} className='text-2xl' />
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-thin">
                 <NavLink to="/" > The Burrow Weather</NavLink>
             </h1>
         </div>
