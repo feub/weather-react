@@ -1,12 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import './utils/i18n'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ErrorPage } from './pages/ErrorPage'
-import { Home } from './pages/Home'
-import { CityWeather } from './pages/CityWeather'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import './utils/i18n';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ErrorPage } from './pages/ErrorPage';
+import { Home } from './pages/Home';
+import { CityWeather } from './pages/CityWeather';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +24,10 @@ const router = createBrowserRouter([
       }
     ]
   }
-])
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
-)
+);
