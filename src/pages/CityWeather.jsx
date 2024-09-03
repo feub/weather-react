@@ -13,7 +13,7 @@ export function CityWeather() {
     const lng = searchParams.get('lng');
     const preview = searchParams.get('preview');
 
-    const OWMAppId = '2482ff4aa06ad0c1916714a4676f4e5f';
+    const OWMAppId = import.meta.env.VITE_API_OWM_ID;
     const units = 'metric';
     const langapi = 'en';
 
